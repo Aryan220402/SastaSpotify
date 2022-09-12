@@ -14,6 +14,7 @@ sealed class Screen(){
     object Setting:Screen()
     object About:Screen()
     object  Home:Screen()
+    object PlayerFull:Screen()
 }
 sealed class DetailScreen(val name :String, val image:Int, var route:String ){
     object  Alka:DetailScreen("Alka Yagnik", R.drawable.alka_yagnik, "Alka Yagnik")

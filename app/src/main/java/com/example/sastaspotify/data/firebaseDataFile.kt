@@ -1,8 +1,13 @@
 package com.example.sastaspotify.data
 
+import com.google.firebase.database.IgnoreExtraProperties
+import java.io.Serializable
+
+@IgnoreExtraProperties
 data class firebaseDataFile(
-    var imageurl:String="",
+    val imageurl:String="",
     val name:String="",
-    var songurl:String=""
-)
+    val songurl:String=""
+): Serializable
+
 

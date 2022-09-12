@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.sastaspotify.ViewModel.MainViewModel
 import com.example.sastaspotify.data.DataProvider
+import com.example.sastaspotify.data.firebaseDataFile
 import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 import com.google.gson.Gson
 
@@ -149,15 +150,13 @@ fun Navigation(navController:NavHostController){
                 SingerPhotoCard(singerPlaylist = singer, navController = navController)
             }
         }
-        composable("playListDetailMood/{singerPlaylistsMood}", arguments = listOf(navArgument("singerPlaylistsMood"){
-            type= NavType.StringType
-        })) { backStackEntry ->
-            backStackEntry.arguments?.getString("singerPlaylistsMood")?.let { json ->
-                val singer = Gson().fromJson(json, DataProvider::class.java)
-                SingerPhotoCard(singerPlaylist = singer, navController = navController)
-            }
+        composable("PlayerFull/{PlaySong}", arguments = listOf(navArgument("PlaySong"){
+            type=NavType.StringType
+        })){
+         navBackStackEntry ->navBackStackEntry.arguments?.getString("PlaySong")?.let{
+             json ->val song =Gson().fromJson(json, firebaseDataFile::class.java)
+            Player( songDetail=song, navController )
         }
-
-
+        }
     }
 }

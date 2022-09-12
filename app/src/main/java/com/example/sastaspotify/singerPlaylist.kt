@@ -18,6 +18,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sastaspotify.ViewModel.MainViewModel
 import com.example.sastaspotify.data.DataProvider
 import com.example.sastaspotify.data.firebaseDataFile
+import com.google.gson.Gson
 
 var arrayList=MainViewModel()
 @Composable
@@ -47,35 +48,41 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
         Image(painter = painterResource(id = R.drawable.play), contentDescription = null , modifier = Modifier
             .padding(horizontal = 135.dp)
             .size(60.dp))
-        PlayListView(names = arrayList.temList)
+        PlayListView(names = arrayList.temList, navController)
     }
 }
 @Composable
-fun PlayListView(names:MutableList<firebaseDataFile>){
+fun PlayListView(names:MutableList<firebaseDataFile>, navController: NavController){
+
 
     LazyColumn(modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp)) {
         items(items = names) { name ->
-            Gretting(name)
+            Gretting(name, navController)
         }
     }
 }
 @Composable
-fun Gretting(name:firebaseDataFile){
+fun Gretting(name:firebaseDataFile, navController: NavController){
     Card(backgroundColor = Color.White, modifier = Modifier
         .padding(vertical = 8.dp)
         .height(70.dp)){
-        CardContent(name)
+        CardContent(name, navController)
     }
 }
 @Composable
-private fun CardContent(name:firebaseDataFile){
-    Row(modifier = Modifier.padding(horizontal = 8.dp)){
+private fun CardContent(name:firebaseDataFile, navController: NavController){
+    fun navigateToSingerPlaySong(singerPlaylistView: firebaseDataFile){
+        val PlaySong= Gson().toJson(singerPlaylistView)
+        navController.navigate("PlayerFull/$PlaySong")
+    }
+    Row(modifier = Modifier.padding(horizontal = 8.dp).clickable{}){
         Column(modifier= Modifier
-            .padding(horizontal = 12.dp)
+            .padding(horizontal = 8.dp)
             .weight(1f)) {
-            Row(modifier = Modifier.padding( vertical = 12.dp)) {
-                Image(painter =  rememberAsyncImagePainter(name.imageurl), contentDescription =null, modifier = Modifier.size(50.dp) )
-                Text(text = name.name, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h5)
+            Row(modifier = Modifier.padding( vertical = 12.dp).clickable(onClick = {navigateToSingerPlaySong(name)} )) {
+
+                Image(painter = rememberAsyncImagePainter(model = name.imageurl), contentDescription =null, modifier = Modifier.size(60.dp).height(30.dp) )
+                Text(text = name.name, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h6)
             }
         }
     }

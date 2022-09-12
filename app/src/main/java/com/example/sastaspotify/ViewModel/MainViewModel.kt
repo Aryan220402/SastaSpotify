@@ -18,7 +18,7 @@ class MainViewModel : ViewModel()  {
     private fun FetchDataFromDatabase(){
 
 //        response.value=DataState.Loading
-        FirebaseDatabase.getInstance().getReference("Alka Yagnik")
+        FirebaseDatabase.getInstance().getReference().child("Alka Yagnik")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot){
                     for(DataSnap in snapshot.children) {

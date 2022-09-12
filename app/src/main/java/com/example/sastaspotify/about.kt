@@ -19,7 +19,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 
 @Composable
-fun About(navController: NavController){
+fun About( navController: NavController){
     Column(
         Modifier
 
