@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.SastaSpotify" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#1E88E5</item>
+        <item name="android:statusBarColor">#689F38</item>
     </style>
 </resources>

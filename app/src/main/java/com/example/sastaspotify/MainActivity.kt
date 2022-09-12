@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.border
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -58,7 +61,9 @@ private fun BottonNavigation(
 )
 
     BottomNavigation(
-    backgroundColor = MaterialTheme.colors.primaryVariant) {
+        Modifier.border(1.dp, color = Color.Black),
+    backgroundColor = MaterialTheme.colors.primaryVariant)
+    {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute=navBackStackEntry?.destination?.route
         items.forEach{
@@ -67,6 +72,7 @@ private fun BottonNavigation(
             label={Text(text = item.title, fontSize = 10.sp)},
             selectedContentColor = Color.Black,
             unselectedContentColor = Color.Black.copy(0.4f),
+
             alwaysShowLabel = true,
             selected = currentRoute==item.screen_route,
             onClick = {

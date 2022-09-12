@@ -33,7 +33,7 @@ fun About(navController: NavController){
             Text(text = "About", style = MaterialTheme.typography.h5, color = Color.Black, modifier = Modifier.padding(vertical = 8.dp))
         }
         Row(Modifier.padding(vertical = 5.dp)) {
-            Image(painter = painterResource(id = com.example.sastaspotify.R.drawable.divyanshu),
+            Image(painter = painterResource(id = com.example.sastaspotify.R.drawable.dhvani_bhanushani),
                 contentDescription = null,
                 modifier = Modifier
                     .size(150.dp)

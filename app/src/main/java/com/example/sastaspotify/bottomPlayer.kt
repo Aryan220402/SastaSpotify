@@ -24,7 +24,7 @@ fun Bottomplayer(){
             .fillMaxWidth()
             .size(70.dp)){
         Row() {
-            Image(painter = painterResource(id =  R.drawable.divyanshu), contentDescription =null , Modifier.size(50.dp))
+            Image(painter = painterResource(id =  R.drawable.dhvani_bhanushani), contentDescription =null , Modifier.size(50.dp))
             Text(text = "Song name", modifier = Modifier.padding(horizontal = 25.dp, vertical = 9.dp), style = MaterialTheme.typography.h6)
             Image(painter = painterResource(id =  R.drawable.fav), contentDescription =null, modifier= Modifier
                 .size(50.dp)
